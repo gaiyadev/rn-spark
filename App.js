@@ -5,7 +5,6 @@ import { useFonts } from "expo-font";
 import Navigator from "./navigation/routes";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider } from "react-native-elements";
-import { MenuProvider } from "react-native-popup-menu";
 
 const theme = {
   Button: {
@@ -31,9 +30,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
-        <MenuProvider>
           <Navigator />
-        </MenuProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );

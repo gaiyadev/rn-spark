@@ -9,12 +9,12 @@ import {
   Keyboard,
   KeyboardAvoidingView,
 } from "react-native";
-import Button from "../components/forms/Button";
-import Inputs from "../components/forms/Input";
-import { COLORS } from "../constants/colors";
-import { FONTS } from "../constants/fonts";
-import HeaderLogo from "../components/forms/HeaderLogo";
-import BackArrowButton from "../components/UI/BackArrowButton";
+import Button from "../../components/forms/Button";
+import Inputs from "../../components/forms/Input";
+import { COLORS } from "../../constants/colors";
+import { FONTS } from "../../constants/fonts";
+import HeaderLogo from "../../components/forms/HeaderLogo";
+import BackArrowButton from "../../components/UI/BackArrowButton";
 
 const ForgotPasswordScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");

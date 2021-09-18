@@ -12,11 +12,11 @@ export const onBoardings = [
     title: "Let's Talk",
     description:
       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-    img: onboarding_6,
+    img: onboarding_3,
   },
   {
     id: 2,
-    title: "Doctors",
+    title: "Rn spark",
     description:
       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
     img: onboarding_2,

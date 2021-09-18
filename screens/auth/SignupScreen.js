@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,25 +10,25 @@ import {
   Keyboard,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import Button from "../components/forms/Button";
-import Inputs from "../components/forms/Input";
-import { COLORS } from "../constants/colors";
-import { FONTS } from "../constants/fonts";
-import SocialLinks from "../components/forms/SocialLinks";
-import HeaderLogo from "../components/forms/HeaderLogo";
-import * as Animatable from "react-native-animatable";
-import BackArrowButton from "../components/UI/BackArrowButton";
+import Button from "../../components/forms/Button";
+import Inputs from "../../components/forms/Input";
+import { COLORS } from "../../constants/colors";
+import { FONTS } from "../../constants/fonts";
+import HeaderLogo from "../../components/forms/HeaderLogo";
+import BackArrowButton from "../../components/UI/BackArrowButton";
 
-const LoginScreen = ({ navigation }) => {
+const SignupScreen = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [comfirmPassword, setcomfirmPassword] = useState("");
+
+  const [username, setUsername] = useState("");
 
   // Submitting data
   const onSubmitHandler = () => {
-    const user = { email, password };
+    const user = { email, password, username, comfirmPassword };
     console.log(user);
-    navigation.navigate("Otp");
   };
 
   return (
@@ -36,20 +36,22 @@ const LoginScreen = ({ navigation }) => {
       onPress={Keyboard.dismiss}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
-      // keyboardVerticalOffset={100}
+      keyboardVerticalOffset={100}
     >
-      <ScrollView
-        style={{
-          flex: 1,
-          backgroundColor: COLORS.white,
-        }}
-      >
+      <ScrollView>
         <View style={styles.container}>
           <BackArrowButton onPress={() => navigation.goBack()} />
 
+          {/* logo */}
           <HeaderLogo />
-
           <View style={styles.inputContainer}>
+            <Inputs
+              placeholder="Username"
+              value={useState}
+              onChangeText={(text) => setUsername(text)}
+              label="user"
+            />
+
             <Inputs
               value={email}
               onChangeText={(text) => setEmail(text)}
@@ -57,13 +59,12 @@ const LoginScreen = ({ navigation }) => {
               placeholder="Email"
               label="envelope"
               keyboardType="email-address"
-              returnKeyLabel="next"
             />
+
             <Inputs
               onChangeText={(text) => setPassword(text)}
               textContentType="password"
               placeholder="Password"
-              returnKeyLabel="done"
               label="lock"
               value={password}
               secureTextEntry={!showPassword}
@@ -76,15 +77,22 @@ const LoginScreen = ({ navigation }) => {
                 />
               }
             />
-            <View style={styles.forgotPasswordContainer}>
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  navigation.navigate("ForgotPassword");
-                }}
-              >
-                <Text style={styles.forgotPassword}>ForgotPassword?</Text>
-              </TouchableWithoutFeedback>
-            </View>
+
+            <Inputs
+              onChangeText={(text) => setcomfirmPassword(text)}
+              textContentType="password"
+              placeholder="Comfirm Password"
+              label="lock"
+              secureTextEntry={!showPassword}
+              rightIcon={
+                <Icon
+                  name={showPassword ? "eye" : "eye-slash"}
+                  size={24}
+                  color={COLORS.blue}
+                  onPress={() => setShowPassword(!showPassword)}
+                />
+              }
+            />
 
             <Button
               titleStyle={COLORS.white}
@@ -95,37 +103,24 @@ const LoginScreen = ({ navigation }) => {
                 width: 300,
               }}
               containerStyle={{ alignItems: "center" }}
-              title="Login"
+              title="Sign Up"
               onPress={onSubmitHandler}
               color={COLORS.black}
-              style={styles.btn}
             />
           </View>
-          <View style={styles.or}>
-            <Animatable.Text
-              animation="slideInDown"
-              iterationCount={5}
-              direction="alternate"
-            >
-              Login with
-            </Animatable.Text>
-          </View>
-          {/* SOCIAL LOGIN */}
-          <SocialLinks />
-
           <View
             style={{
               alignItems: "center",
             }}
           >
             <Text style={styles.account}>
-              Don't have an account? &nbsp;
+              Already have an account? &nbsp;
               <TouchableWithoutFeedback
                 onPress={() => {
-                  navigation.navigate("Signup");
+                  navigation.navigate("Login");
                 }}
               >
-                <Text style={styles.signup}>Sign Up</Text>
+                <Text style={styles.signup}>Login</Text>
               </TouchableWithoutFeedback>
             </Text>
           </View>
@@ -134,8 +129,11 @@ const LoginScreen = ({ navigation }) => {
     </KeyboardAvoidingView>
   );
 };
-
 const styles = StyleSheet.create({
+  socialLogo: {
+    width: 25,
+    height: 25,
+  },
   signup: {
     ...FONTS.tiny,
     color: COLORS.blue,
@@ -152,7 +150,12 @@ const styles = StyleSheet.create({
   orText: {
     color: COLORS.gray,
   },
-
+  social: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    padding: 34,
+  },
   forgotPassword: {
     paddingBottom: 6,
     paddingTop: 1,
@@ -166,16 +169,13 @@ const styles = StyleSheet.create({
   inputContainer: {
     padding: 12,
   },
-  btn: {
-    borderRadius: 50,
-    padding: 12,
-  },
+
   container: {
     flex: 1,
     marginTop: 30,
     alignContent: "center",
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.bgColor,
   },
 });
 
-export default LoginScreen;
+export default SignupScreen;
