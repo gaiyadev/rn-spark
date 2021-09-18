@@ -7,9 +7,9 @@ import ForgotPasswordScreen from "../screens/auth/ForgotPasswordScreen";
 import SignupScreen from "../screens/auth/SignupScreen";
 import { FONTS } from "../constants/fonts";
 import { COLORS } from "../constants/colors";
-import Icon from "react-native-vector-icons/Ionicons";
 import AccountScreen from "../screens/user/AccountScreen";
 import ChangePassswordScreen from "../screens/user/ChangePassswordScreen";
+
 const OnboardStack = createNativeStackNavigator();
 
 const Onboard = () => {

@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, Image } from "react-native";
-import { ICONS } from "../../constants/icons";
 
 const HeaderLogo = () => {
   return (
